@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:persono_mobile/components/Post.dart';
+import 'package:persono_mobile/components/blog_post.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -59,7 +59,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            Post(
+            BlogPost(
               title: 'Teste',
               body:
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce suscipit turpis eu ligula tincidunt egestas.',

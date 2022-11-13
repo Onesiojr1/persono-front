@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 
-class Post extends StatelessWidget {
+class BlogPost extends StatelessWidget {
   final String title;
   final String body;
   final String name;
   final String category;
   final DateTime date;
 
-  const Post(
+  const BlogPost(
       {super.key,
       required this.title,
       required this.body,
