@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:persono_mobile/components/Post.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -54,7 +55,15 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-            )
+            ),
+            Post(
+              title: 'Teste',
+              body:
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce suscipit turpis eu ligula tincidunt egestas.',
+              name: 'Onesio',
+              category: 'SONO E CIÊNCIA',
+              date: DateTime.now(),
+            ),
           ],
         ),
       ),
