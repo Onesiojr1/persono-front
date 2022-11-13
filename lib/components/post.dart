@@ -41,16 +41,23 @@ class Post extends StatelessWidget {
               'Por: $name - $postDate',
               style: TextStyle(color: Colors.grey[600], fontSize: 9),
             ),
-            Text(
-              body,
-              style: TextStyle(color: Colors.grey[500], fontSize: 12),
-            ),
-            Chip(
-              label: Text(
-                category,
-                style: const TextStyle(fontSize: 9, color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+              child: Text(
+                body,
+                style: TextStyle(color: Colors.grey[500], fontSize: 12),
               ),
-              backgroundColor: Color(int.parse('0xff80a5e8')),
+            ),
+            SizedBox(
+              // height: 20,
+              child: Chip(
+                label: Text(
+                  category,
+                  style: const TextStyle(fontSize: 9, color: Colors.white),
+                ),
+                backgroundColor: Color(int.parse('0xff80a5e8')),
+                labelPadding: const EdgeInsets.fromLTRB(0, -6, 0, -6),
+              ),
             )
           ],
         ),

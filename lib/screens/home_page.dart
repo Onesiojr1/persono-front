@@ -31,14 +31,17 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-            TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: 'Buscar um Post',
-                border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(20)),
+            SizedBox(
+              height: 35,
+              child: TextField(
+                decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.white,
+                    hintText: 'Buscar um Post',
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(20)),
+                    contentPadding: const EdgeInsets.all(8)),
               ),
             ),
             Padding(
