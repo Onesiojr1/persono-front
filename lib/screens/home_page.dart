@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persono_mobile/components/blog_post.dart';
 import 'package:persono_mobile/components/list_post.dart';
+import 'package:persono_mobile/screens/post_form.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -27,7 +28,7 @@ class HomePage extends StatelessWidget {
                   IconButton(
                     icon: const Icon(Icons.add),
                     tooltip: 'Add a Blog Post',
-                    onPressed: () {},
+                    onPressed: () => _showPostForm(context),
                     color: Colors.white,
                     iconSize: 32,
                   ),
@@ -68,4 +69,12 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+}
+
+void _showPostForm(BuildContext context) {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const PostForm(),
+    ),
+  );
 }

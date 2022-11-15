@@ -12,7 +12,7 @@ String postToJson(List<Post> data) =>
 
 class Post {
   Post({
-    required this.id,
+    this.id,
     required this.title,
     required this.name,
     required this.body,
@@ -20,7 +20,7 @@ class Post {
     required this.createdAt,
   });
 
-  String id;
+  String? id;
   String title;
   String name;
   String body;
@@ -37,11 +37,9 @@ class Post {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
         "title": title,
         "name": name,
         "body": body,
         "category": category,
-        "createdAt": createdAt.toIso8601String(),
       };
 }
