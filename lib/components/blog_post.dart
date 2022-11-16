@@ -25,7 +25,7 @@ class BlogPost extends StatelessWidget {
     return Card(
       color: Color(int.parse('0xff383838')),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(6, 12, 6, 6),
+        padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -48,16 +48,27 @@ class BlogPost extends StatelessWidget {
                 style: TextStyle(color: Colors.grey[500], fontSize: 16),
               ),
             ),
-            SizedBox(
-              // height: 20,
-              child: Chip(
-                label: Text(
-                  category,
-                  style: const TextStyle(fontSize: 12, color: Colors.white),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Chip(
+                  label: Container(
+                    constraints: const BoxConstraints(minWidth: 50),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          category,
+                          style: const TextStyle(
+                              fontSize: 12, color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                  backgroundColor: Color(int.parse('0xff80a5e8')),
+                  labelPadding: const EdgeInsets.fromLTRB(0, -4, 0, -4),
                 ),
-                backgroundColor: Color(int.parse('0xff80a5e8')),
-                labelPadding: const EdgeInsets.fromLTRB(0, -4, 0, -4),
-              ),
+              ],
             )
           ],
         ),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:persono_mobile/components/bloc_list_post.dart';
-import 'package:persono_mobile/components/blog_post.dart';
 import 'package:persono_mobile/components/list_post.dart';
 import 'package:persono_mobile/screens/post_form.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -19,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     if (bloc.filteredPosts == null || bloc.filteredPosts!.isEmpty) {
-      text = 'Não há itens cadastrados';
+      text = 'Não há itens cadastrados ou itens com essa busca';
     } else if (bloc.filteredPosts!.length == bloc.posts!.length) {
       text = 'Exibindo todos os Posts';
     } else {
