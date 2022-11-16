@@ -6,6 +6,7 @@ class FormInput extends StatelessWidget {
   final String hintText;
   final int minlength;
   final TextEditingController controller;
+  final double inputHeight;
 
   const FormInput(
       {super.key,
@@ -13,7 +14,8 @@ class FormInput extends StatelessWidget {
       required this.errorMessage,
       required this.hintText,
       required this.minlength,
-      required this.controller});
+      required this.controller,
+      this.inputHeight = 35});
 
   @override
   Widget build(BuildContext context) {
@@ -30,23 +32,40 @@ class FormInput extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            height: 50,
-            child: TextFormField(
-              controller: controller,
-              validator: (String? value) {
-                return (value != null && value.length <= minlength)
-                    ? errorMessage
-                    : null;
-              },
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: hintText,
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(20)),
-                  contentPadding: const EdgeInsets.all(8)),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(8)),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    fit: FlexFit.tight,
+                    child: SizedBox(
+                      height: inputHeight,
+                      child: TextFormField(
+                        minLines: 1,
+                        maxLines: 5,
+                        controller: controller,
+                        validator: (String? value) {
+                          return (value != null && value.length <= minlength)
+                              ? errorMessage
+                              : null;
+                        },
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: hintText,
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide.none,
+                                borderRadius: BorderRadius.circular(20)),
+                            contentPadding: const EdgeInsets.all(8)),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

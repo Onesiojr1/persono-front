@@ -61,6 +61,7 @@ class _PostFormState extends State<PostForm> {
                     ),
                     FormInput(
                       label: 'Qual o seu Post?',
+                      inputHeight: 100,
                       minlength: 10,
                       errorMessage: 'O Post deve ter mais de 10 digitos',
                       hintText: 'Post',

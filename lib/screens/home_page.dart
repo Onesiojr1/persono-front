@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Color(int.parse('0xff2c2c2c')),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(32.0),
+          padding: const EdgeInsets.fromLTRB(12, 32, 12, 12),
           child: Column(
             children: [
               Row(
@@ -70,7 +70,9 @@ class _HomePageState extends State<HomePage> {
                           controller: input,
                           onChanged: (value) {
                             bloc.filteredPosts = bloc.posts
-                                    ?.where((e) => e.title.contains(value))
+                                    ?.where((e) => e.title
+                                        .toLowerCase()
+                                        .contains(value.toLowerCase()))
                                     .toList() ??
                                 [];
                             setState(() {});
@@ -88,11 +90,11 @@ class _HomePageState extends State<HomePage> {
                         opacity: input.text.length > 0 ? 1 : 0,
                         duration: const Duration(milliseconds: 200),
                         child: Container(
-                          width: 50,
+                          width: 60,
                           height: 25,
                           decoration: BoxDecoration(
-                              color: Color(int.parse('0xff80a5e8')),
-                              borderRadius: BorderRadius.circular(8)),
+                              color: Color(int.parse('0xff2c2c2c')),
+                              borderRadius: BorderRadius.circular(16)),
                           child: const Center(
                               child: Text(
                             'Limpar',
