@@ -31,9 +31,15 @@ class BlogPost extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text(
-                  title,
-                  style: const TextStyle(color: Colors.white, fontSize: 18),
+                SizedBox(
+                  width: 350.0,
+                  child: Text(
+                    title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    style: const TextStyle(color: Colors.white, fontSize: 18),
+                  ),
                 ),
               ],
             ),
