@@ -1,13 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:persono_mobile/components/bloc_list_post.dart';
 import 'package:persono_mobile/components/blog_post.dart';
 import 'package:persono_mobile/components/list_post.dart';
 import 'package:persono_mobile/screens/post_form.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final BlocListPost bloc = BlocListPost();
+  var text = 'Não há itens cadastrados';
+  var input = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
+    if (bloc.filteredPosts == null || bloc.filteredPosts!.isEmpty) {
+      text = 'Não há itens cadastrados';
+    } else if (bloc.filteredPosts!.length == bloc.posts!.length) {
+      text = 'Exibindo todos os Posts';
+    } else {
+      text = 'Exibindo ${bloc.filteredPosts!.length} posts para: ${input.text}';
+    }
     return Scaffold(
       backgroundColor: Color(int.parse('0xff2c2c2c')),
       body: SingleChildScrollView(
@@ -34,27 +51,68 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 35,
-                child: TextField(
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      hintText: 'Buscar um Post',
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(20)),
-                      contentPadding: const EdgeInsets.all(8)),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8)),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(width: 15),
+                    Flexible(
+                      fit: FlexFit.tight,
+                      child: SizedBox(
+                        height: 35,
+                        child: TextField(
+                          decoration: const InputDecoration(
+                            hintText: 'Buscar um Post',
+                          ),
+                          controller: input,
+                          onChanged: (value) {
+                            bloc.filteredPosts = bloc.posts
+                                    ?.where((e) => e.title.contains(value))
+                                    .toList() ??
+                                [];
+                            setState(() {});
+                          },
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        input.text = '';
+                        bloc.filteredPosts = bloc.posts ?? [];
+                        setState(() {});
+                      },
+                      child: AnimatedOpacity(
+                        opacity: input.text.length > 0 ? 1 : 0,
+                        duration: const Duration(milliseconds: 200),
+                        child: Container(
+                          width: 50,
+                          height: 25,
+                          decoration: BoxDecoration(
+                              color: Color(int.parse('0xff80a5e8')),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: const Center(
+                              child: Text(
+                            'Limpar',
+                            style: TextStyle(color: Colors.white),
+                          )),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                  ],
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
-                      'Exibindo todos os Posts',
-                      style: TextStyle(
+                      text,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 16,
                       ),
@@ -62,19 +120,27 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              ListOfPosts()
+              ListOfPosts(
+                bloc: bloc,
+                key: Key(bloc.filteredPosts?.length.toString() ?? ''),
+              )
             ],
           ),
         ),
       ),
     );
   }
-}
 
-void _showPostForm(BuildContext context) {
-  Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => const PostForm(),
-    ),
-  );
+  void _showPostForm(BuildContext context) {
+    Navigator.of(context)
+        .push(
+      MaterialPageRoute(
+        builder: (context) => const PostForm(),
+      ),
+    )
+        .then((_) async {
+      await bloc.getData();
+      setState(() {});
+    });
+  }
 }

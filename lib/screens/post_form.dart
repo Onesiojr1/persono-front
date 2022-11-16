@@ -78,16 +78,13 @@ class _PostFormState extends State<PostForm> {
                       child: ElevatedButton(
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
-                            // ScaffoldMessenger.of(context).showSnackBar(
-                            //   const SnackBar(content: Text('Processing Data')),
-                            // );
                             var post = Post(
                                 name: _valueNameController.text,
                                 title: _valueTitleController.text,
                                 body: _valueBodyController.text,
                                 category: _valueCategoryController.text,
                                 createdAt: DateTime.now());
-                            var response = await RemoteService().post(post);
+                            await RemoteService().post(post);
                             Navigator.pop(context);
                           }
                         },

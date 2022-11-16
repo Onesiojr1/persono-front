@@ -4,7 +4,7 @@ import 'package:persono_mobile/models/post.dart';
 import 'package:http/http.dart' as http;
 
 var client = http.Client();
-var uri = Uri.parse('http://10.0.0.181:8000/blogPost');
+var uri = Uri.parse('http://10.0.2.2:8000/blogPost');
 
 class RemoteService {
   Future<List<Post>?> getPosts() async {
