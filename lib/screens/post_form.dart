@@ -87,8 +87,13 @@ class _PostFormState extends State<PostForm> {
                                 body: _valueBodyController.text,
                                 category: _valueCategoryController.text,
                                 createdAt: DateTime.now());
-                            await RemoteService().post(post);
-                            return _showSuccessfulMessage(post, context);
+                            try {
+                              await RemoteService().post(post);
+                              return _showSuccessfulMessage(post, context);
+                            } catch (e) {
+                              print(e);
+                              return _showFailureMessage(context);
+                            }
                           }
                         },
                         child: const Text('Enviar'),
@@ -113,5 +118,15 @@ class _PostFormState extends State<PostForm> {
           });
       Navigator.pop(context);
     }
+  }
+
+  void _showFailureMessage(BuildContext context,
+      {String message =
+          'Não foi possovel criar seu post, tente novamente mais tarde!'}) {
+    showDialog(
+        context: context,
+        builder: (contextDialog) {
+          return FailureDialog(message);
+        });
   }
 }

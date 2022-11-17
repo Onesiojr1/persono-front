@@ -36,6 +36,7 @@ class _ListOfPostsState extends State<ListOfPosts> with Loader {
       // ignore: sort_child_properties_last
       child: ListView.builder(
         key: Key(widget.bloc.filteredPosts?.length.toString() ?? ''),
+        physics: NeverScrollableScrollPhysics(),
         itemCount: widget.bloc.filteredPosts?.length,
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
