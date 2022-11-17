@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:persono_mobile/components/bloc_list_post.dart';
 import 'package:persono_mobile/components/blog_post.dart';
+import 'package:persono_mobile/components/response_dialog.dart';
 import 'package:persono_mobile/models/post.dart';
 import 'package:persono_mobile/services/remote_services.dart';
 
@@ -26,7 +27,15 @@ class _ListOfPostsState extends State<ListOfPosts> with Loader {
   @override
   void initState() {
     super.initState();
-    widget.bloc.getData().then((value) => setLoad());
+    widget.bloc.getData().then((value) => setLoad(), onError: (e) {
+      {
+        showDialog(
+            context: context,
+            builder: (contextDialog) {
+              return FailureDialog('Ocorreu um erro ao mostrar os Posts');
+            });
+      }
+    });
   }
 
   @override
@@ -35,7 +44,6 @@ class _ListOfPostsState extends State<ListOfPosts> with Loader {
       visible: isLoaded,
       // ignore: sort_child_properties_last
       child: ListView.builder(
-        key: Key(widget.bloc.filteredPosts?.length.toString() ?? ''),
         physics: NeverScrollableScrollPhysics(),
         itemCount: widget.bloc.filteredPosts?.length,
         shrinkWrap: true,
