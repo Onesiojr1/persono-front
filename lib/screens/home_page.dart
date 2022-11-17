@@ -123,7 +123,6 @@ class _HomePageState extends State<HomePage> {
               ),
               ListOfPosts(
                 bloc: bloc,
-                key: Key(bloc.filteredPosts?.length.toString() ?? ''),
               )
             ],
           ),
