@@ -3,6 +3,8 @@ import 'package:persono_mobile/components/form_input.dart';
 import 'package:persono_mobile/models/post.dart';
 import 'package:persono_mobile/services/remote_services.dart';
 
+import '../components/response_dialog.dart';
+
 class PostForm extends StatefulWidget {
   const PostForm({super.key});
 
@@ -86,7 +88,7 @@ class _PostFormState extends State<PostForm> {
                                 category: _valueCategoryController.text,
                                 createdAt: DateTime.now());
                             await RemoteService().post(post);
-                            Navigator.pop(context);
+                            return _showSuccessfulMessage(post, context);
                           }
                         },
                         child: const Text('Enviar'),
@@ -100,5 +102,16 @@ class _PostFormState extends State<PostForm> {
         ),
       ),
     );
+  }
+
+  Future<void> _showSuccessfulMessage(Post post, BuildContext context) async {
+    if (post != null) {
+      await showDialog(
+          context: context,
+          builder: (contextDialog) {
+            return const SuccessDialog('Post criado com sucesso');
+          });
+      Navigator.pop(context);
+    }
   }
 }
