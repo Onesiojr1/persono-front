@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ResponseDialog extends StatelessWidget {
-  final String title;
   final String message;
   final String buttonText;
   final IconData icon;
   final Color colorIcon;
 
   ResponseDialog({
-    this.title = "",
     this.message = "",
     required this.icon,
     this.buttonText = 'Ok',
@@ -18,10 +16,6 @@ class ResponseDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Visibility(
-        visible: title.isNotEmpty,
-        child: Text(title),
-      ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -54,9 +48,11 @@ class ResponseDialog extends StatelessWidget {
         ],
       ),
       actions: <Widget>[
-        GestureDetector(
-          child: Text(buttonText),
-          onTap: () => Navigator.pop(context),
+        Center(
+          child: GestureDetector(
+            child: Text(buttonText),
+            onTap: () => Navigator.pop(context),
+          ),
         )
       ],
     );
@@ -78,7 +74,6 @@ class SuccessDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponseDialog(
-      title: title,
       message: message,
       icon: icon,
       colorIcon: Colors.green,
@@ -101,7 +96,6 @@ class FailureDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponseDialog(
-      title: title,
       message: message,
       icon: icon,
       colorIcon: Colors.red,
