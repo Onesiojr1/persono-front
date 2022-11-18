@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                         setState(() {});
                       },
                       child: AnimatedOpacity(
-                        opacity: input.text.length > 0 ? 1 : 0,
+                        opacity: input.text.isNotEmpty ? 1 : 0,
                         duration: const Duration(milliseconds: 200),
                         child: Container(
                           width: 60,

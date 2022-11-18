@@ -91,7 +91,6 @@ class _PostFormState extends State<PostForm> {
                               await RemoteService().post(post);
                               return _showSuccessfulMessage(post, context);
                             } catch (e) {
-                              print(e);
                               return _showFailureMessage(context);
                             }
                           }

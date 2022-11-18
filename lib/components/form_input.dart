@@ -49,7 +49,7 @@ class FormInput extends StatelessWidget {
                         maxLines: 5,
                         controller: controller,
                         validator: (String? value) {
-                          return (value != null && value.length <= minlength)
+                          return (value != null && value.length < minlength)
                               ? errorMessage
                               : null;
                         },
