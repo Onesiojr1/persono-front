@@ -1,16 +1,31 @@
-# persono_mobile
+# persono-front
 
-A new Flutter project.
+Um Projeto de listagem e criação de postagens realizado em Flutter, consumindo uma API em node.js;
 
-## Getting Started
+## Importante
 
-This project is a starting point for a Flutter application.
+É importante que para o funcionamento do projeto, a API(Persono_server) já esteja rodando na porta padrão;
 
-A few resources to get you started if this is your first Flutter project:
+## Instalação
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Para clonar o Projeto em seu computador utilize o comando:
+```sh
+git clone https://github.com/Onesiojr1/persono-server.git
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Após clonar o projeto, você deve entrar no diretório do projeto e instalar suas dependênciascom os comandos:
+```sh
+cd .\persono-front\
+pub get
+```
+
+Logo após todas as dependências estarem instaladas, deve abrir seu emulador de preferência e rodar o comando: 
+```sh
+flutter run
+```
+
+## Observações
+Caso seja necessário mudar a rota da api mudar link de conexão da api no arquivo:
+```sh
+lib\services\remote_services.dart
+```
