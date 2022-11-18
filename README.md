@@ -25,7 +25,7 @@ flutter run
 ```
 
 ## Observações
-Caso seja necessário mudar a rota da api mudar link de conexão da api no arquivo:
+Caso seja necessário mudar a rota da api, você deve mudar link de conexão da api no arquivo:
 ```sh
 lib\services\remote_services.dart
 ```
