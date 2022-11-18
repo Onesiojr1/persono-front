@@ -16,7 +16,7 @@ git clone https://github.com/Onesiojr1/persono-front.git
 Após clonar o projeto, você deve entrar no diretório do projeto e instalar suas dependênciascom os comandos:
 ```sh
 cd .\persono-front\
-pub get
+fluutter pub get
 ```
 
 Logo após todas as dependências estarem instaladas, deve abrir seu emulador de preferência e rodar o comando: 
