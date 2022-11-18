@@ -30,4 +30,4 @@ Caso seja necessário mudar a rota da api, você deve mudar link de conexão da 
 lib\services\remote_services.dart
 ```
 ## Observações
-Flutter: 3
+Flutter: versão 3
